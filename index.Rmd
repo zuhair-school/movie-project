@@ -1,0 +1,41 @@
+---
+title: "Most Used Movie Genres"
+description: |
+  Which one genre do you think is most used?
+site: distill::distill_website
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(distill)
+
+x <- read_delim("title.basics.tsv.gz", delim = '\t')
+
+```
+
+```{r movie=plot}
+
+clean_x <- x %>%
+  select(genres) %>% 
+  slice(1:1000000) %>%
+  separate(genres, into = c("x1", "x2", "x3", "x4", "x5"), sep = ",") %>%
+  pivot_longer(cols = everything(),
+               names_to = "order", 
+               values_to = "genre")%>%
+  drop_na(genre) %>%
+  group_by(genre) %>%
+  summarize(total = n()) %>%
+  slice(2:10000)
+
+clean_x %>%
+  ggplot(mapping = aes(fct_reorder(genre, total), total))+
+  geom_col()+
+  coord_flip()+
+  scale_y_continuous(labels = scales::comma)+
+  labs(title = "The Highest Movie Genres", subtitle = "The genre 'Drama' had the most movies", x = "Genres", y = "Number of Movies")
+
+```
+
+### Summary
+Viewing the graph, it shows the Drama genre is the most used genre in Movie and TV shows. Using the table, you can see the exact number of movies and TV shows for each genre. The table shows that drama has around 300,000 movies and TV shows. The next most used genre is comedy at around 250,000 movies and TV shows. This concludes that producers don't use the same genres for everything. This also brings closure to what is the most popular genre of movies and TV shows.

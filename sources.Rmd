@@ -1,0 +1,16 @@
+---
+title: "Sources"
+description: |
+  An overview of the source used in my project
+author:
+  - name: IMDB
+    url: https://datasets.imdbws.com/
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+In the website, there are a few different versions of this data set. The one I used was *title.basics.tsv.gz*. This is the data set with the different genres. The other ones don't have the different genres for the movies.
