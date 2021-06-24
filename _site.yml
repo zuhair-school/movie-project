@@ -1,0 +1,16 @@
+name: "."
+title: "Movie Genres and if Producers are using the same genres"
+description: |
+  Movie Genres and if Producers are using the same genres
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Sources"
+      href: sources.html
+    - text: "Data Table"
+      href: table.html
+output: distill::distill_article
